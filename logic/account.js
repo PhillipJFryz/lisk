@@ -39,6 +39,7 @@ function Account (db, schema, logger, cb) {
 	};
 
 	this.table = 'accounts_list';
+
 	/**
 	 * @typedef {Object} account
 	 * @property {string} username - Lowercase, between 1 and 20 chars.
@@ -303,6 +304,7 @@ function Account (db, schema, logger, cb) {
 }
 
 // Public methods
+
 /**
  * Binds input parameters to private variables modules.
  * @param {Blocks} blocks
@@ -490,7 +492,6 @@ Account.prototype.getAll = function (filter, fields, cb) {
 	var DEFAULT_LIMIT = constants.activeDelegates;
 	var limit, offset, sort;
 
-
 	if (filter.offset > 0) {
 		offset = filter.offset;
 	}
@@ -555,7 +556,7 @@ Account.prototype.getAll = function (filter, fields, cb) {
 			}
 		}
 	});
-	
+
 	var self = this;
 
 	this.scope.db.query(sql.query, sql.values).then(function (rows) {
