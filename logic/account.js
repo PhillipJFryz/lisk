@@ -82,7 +82,7 @@ function Account (db, schema, logger, cb) {
 			},
 			conv: String,
 			immutable: true,
-			expression: 'UPPER(a.address)'
+			expression: 'UPPER(a."address")'
 		},
 		{
 			name: 'publicKey',
