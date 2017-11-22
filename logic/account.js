@@ -600,10 +600,14 @@ Account.prototype.getAll = function (filter, fields, cb) {
  * @returns {Number}
  */
 Account.prototype.calculateApproval = function (votersBalance, totalSupply) {
-	// votersBalance and totalSupply are sent as strings, we convert them into bignum and send the response as number as well.
+	// Create bignum instances from arguments
 	var votersBalanceBignum = new Bignum(votersBalance || 0);
 	var totalSupplyBignum =  new Bignum(totalSupply);
+
+	// Calculate bignum approval
 	var approvalBignum = (votersBalanceBignum.dividedBy(totalSupplyBignum)).times(100).round(2);
+
+	// Return bignum approval as number
 	return !(approvalBignum.isNaN()) ? approvalBignum.toNumber() : 0;
 };
 
@@ -614,10 +618,15 @@ Account.prototype.calculateApproval = function (votersBalance, totalSupply) {
  * @returns {Number}
  */
 Account.prototype.calculateProductivity = function (producedBlocks, missedBlocks) {
+	// Create bignum instances from arguments
 	var producedBlocksBignum = new Bignum(producedBlocks || 0);
 	var missedBlocksBignum = new Bignum(missedBlocks || 0);
-	var percent = producedBlocksBignum.dividedBy(producedBlocksBignum.plus(missedBlocksBignum)).times(100).round(2);
-	return !(percent.isNaN()) ? percent.toNumber() : 0;
+
+	// Calculate bignum productivity
+	var productivityBignum = producedBlocksBignum.dividedBy(producedBlocksBignum.plus(missedBlocksBignum)).times(100).round(2);
+
+	// Return bignum productivity as number
+	return !(productivityBignum.isNaN()) ? productivityBignum.toNumber() : 0;
 };
 
 /**
