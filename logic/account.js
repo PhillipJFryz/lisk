@@ -316,7 +316,7 @@ Account.prototype.bind = function (blocks) {
 };
 
 /**
- * Creates memory tables related to accounts:
+ * Creates the accounts related memory tables:
  * - mem_accounts
  * - mem_accounts2delegates
  * - mem_accounts2u_delegates
@@ -337,7 +337,7 @@ Account.prototype.createTables = function (cb) {
 };
 
 /**
- * Deletes the contents of these tables:
+ * Deletes the accounts related memory tables:
  * - mem_accounts2delegates
  * - mem_accounts2u_delegates
  * - mem_accounts2multisignatures
@@ -369,9 +369,9 @@ Account.prototype.removeTables = function (cb) {
 };
 
 /**
- * Validates account schema.
+ * Validates the given account schema.
  * @param {account} account
- * @returns {err|account} Error message or input parameter account.
+ * @returns {err|account} Error message or the given account argument.
  * @throws {string} If schema.validate fails, throws 'Failed to validate account schema'.
  */
 Account.prototype.objectNormalize = function (account) {
@@ -391,9 +391,9 @@ Account.prototype.objectNormalize = function (account) {
 };
 
 /**
- * Checks type, lenght and format from publicKey.
+ * Checks type, length and format of the given publicKey.
  * @param {publicKey} publicKey
- * @throws {string} throws one error for every check.
+ * @throws {string} Throws error on verification failure.
  */
 Account.prototype.verifyPublicKey = function (publicKey) {
 	if (publicKey !== undefined) {
@@ -413,8 +413,8 @@ Account.prototype.verifyPublicKey = function (publicKey) {
 };
 
 /**
- * Normalizes address and creates binary buffers to insert.
- * @param {Object} raw - with address and public key.
+ * Normalizes address and creates binary buffers for insertion.
+ * @param {Object} raw - With address and public key.
  * @returns {Object} Normalized address.
  */
 Account.prototype.toDB = function (raw) {
@@ -431,7 +431,7 @@ Account.prototype.toDB = function (raw) {
 };
 
 /**
- * Gets account information for specified fields and filter criteria.
+ * Gets an account by matching filter criteria.
  * @param {Object} filter - Contains address.
  * @param {Object|function} fields - Table fields.
  * @param {function} cb - Callback function.
@@ -451,11 +451,11 @@ Account.prototype.get = function (filter, fields, cb) {
 };
 
 /**
- * Gets accounts information from mem_accounts.
+ * Gets a list of accounts by matching filter criteria.
  * @param {Object} filter - Contains address.
  * @param {Object|function} fields - Table fields.
  * @param {function} cb - Callback function.
- * @returns {setImmediateCallback} data with rows | 'Account#getAll error'.
+ * @returns {setImmediateCallback} Data with rows | 'Account#getAll error'.
  */
 Account.prototype.getAll = function (filter, fields, cb) {
 	if (typeof fields === 'function') {
@@ -621,7 +621,7 @@ Account.prototype.calculateProductivity = function (producedBlocks, missedBlocks
 };
 
 /**
- * Removes an account from mem_account table based on address.
+ * Removes an account by matching address.
  * @param {address} address
  * @param {function} cb - Callback function.
  * @returns {setImmediateCallback} Data with address | Account#remove error.

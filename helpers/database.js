@@ -119,7 +119,7 @@ function Migrator (pgp, db, logger) {
 	};
 
 	/**
-	 * Creates and execute a db query for each pending migration, then inserts migration into db.
+	 * Creates and execute a db query for each pending migration, then inserts it into the db as an applied migration.
 	 * @method
 	 * @param {Array} pendingMigrations 
 	 * @param {function} cb - Callback function
