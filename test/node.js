@@ -81,7 +81,7 @@ node.gAccount = {
 	key: 'elephant tree paris dragon chair galaxy',
 };
 
-node.swaggerDef = swaggerHelper.getSwaggerSpec();;
+node.swaggerDef = swaggerHelper.getSwaggerSpec();
 
 // Optional logging
 if (process.env.SILENT === 'true') {
@@ -272,7 +272,7 @@ node.randomCapitalUsername = function () {
 	});
 	var custom = 'abcdefghijklmnopqrstuvwxyz0123456789!@$&_.';
 	var username = node.randomString.generate({
-		length: 16,
+		length: 15,
 		charset: custom
 	});
 
