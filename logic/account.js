@@ -272,7 +272,7 @@ function Account (db, schema, logger, cb) {
 		return _tmp;
 	});
 
-	// Obtains bynary fields from model
+	// Obtains binary fields from model
 	this.binary = [];
 	this.model.forEach(function (field) {
 		if (field.type === 'Binary') {
