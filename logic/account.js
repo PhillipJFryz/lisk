@@ -470,7 +470,7 @@ Account.prototype.getAll = function (filter, fields, cb) {
 		if (fields.indexOf(field.name) !== -1) {
 			field.dependentFields.forEach(function (dependentField) {
 				if (fields.indexOf(dependentField) == -1) {
-					// Add the dependent field to the fields array if it's required.
+					// Add dependent field to the fields array if required
 					fieldsAddedForComputation.push(dependentField);
 					fields.push(dependentField);
 				}
@@ -501,7 +501,7 @@ Account.prototype.getAll = function (filter, fields, cb) {
 		limit = filter.limit;
 	}
 
-	// Assigning a default value if none is present.
+	// Assign a default value if none is present
 	if (!limit) {
 		limit = DEFAULT_LIMIT;
 	}
@@ -519,7 +519,6 @@ Account.prototype.getAll = function (filter, fields, cb) {
 				$upper: ['a.address', filter.address]
 			};
 		} else {
-			// If we want to get addresses by id
 			filter['a.address'] = filter.address;
 		}
 		delete filter.address;
@@ -561,8 +560,9 @@ Account.prototype.getAll = function (filter, fields, cb) {
 
 	this.scope.db.query(sql.query, sql.values).then(function (rows) {
 		var lastBlock = modules.blocks.lastBlock.get();
-		// If the last block height is undefined, it means it's a genesis block with height = 1
-		// look for a constant for total supply
+
+		// If the last block height is truthy then calculate total supply from last block height
+		// Otherwise assume the last block was the genesis block with a height of 1
 		var totalSupply = lastBlock.height ? __private.blockReward.calcSupply(lastBlock.height) : 0;
 
 		if (fields.indexOf('approval') !== -1) {
@@ -578,7 +578,7 @@ Account.prototype.getAll = function (filter, fields, cb) {
 		}
 
 		if (fieldsAddedForComputation.length > 0) {
-			// Remove the fields which were only added for computation
+			// Remove fields only added for computation
 			rows.forEach(function (accountRow) {
 				fieldsAddedForComputation.forEach(function (field) {
 					delete accountRow[field];
