@@ -8,6 +8,7 @@ var pathFiles = [
 	'./2.delegate',
 	'./3.votes',
 	'./4.multisig',
+	'./4.multisig.others',
 	'./5.dapps',
 	'./6.dapps.inTransfer',
 	'./7.dapps.outTransfer'
